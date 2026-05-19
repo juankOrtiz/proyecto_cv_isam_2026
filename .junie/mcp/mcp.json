@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/usr/bin/php",
+            "args": [
+                "/home/juank/proyectos/isam/proyecto_cv/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}
