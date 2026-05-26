@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>Ofertas</h1>
+    <ul>
+        <?php foreach($ofertas as $oferta): ?>
+        <li><?= $oferta; ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <a href="{{ route('ofertas.create') }}">Crear una nueva oferta</a>
 </body>
 </html>

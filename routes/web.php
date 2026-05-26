@@ -13,5 +13,20 @@ Route::get('/hola', function() {
 });
 
 // Ruta para ver un listado de ofertas
-Route::get("/ofertas", [OfertaController::class, 'index']);
 // GET -> enlaces
+Route::get("/ofertas", [OfertaController::class, 'index'])
+    ->name('ofertas.index');
+
+// Ruta para mostrar el formulario de creacion de oferta
+Route::get("/ofertas/crear", [OfertaController::class, 'create'])
+    ->name('ofertas.create');
+
+// Ruta para recibir los datos del formulario de nueva oferta
+// POST -> recibir datos de formularios
+Route::post("/ofertas", [OfertaController::class, 'store'])
+    ->name('ofertas.store');
+
+// Ruta para mostrar los datos de UNA oferta
+// {id} es un parametro variable que define el ID de la oferta que queremos ver
+Route::get('/ofertas/{id}', [OfertaController::class, 'show'])
+    ->name('ofertas.show');
