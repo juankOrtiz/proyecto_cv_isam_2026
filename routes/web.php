@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OfertaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,3 +11,7 @@ Route::get('/', function () {
 Route::get('/hola', function() {
     echo "Hola";
 });
+
+// Ruta para ver un listado de ofertas
+Route::get("/ofertas", [OfertaController::class, 'index']);
+// GET -> enlaces
