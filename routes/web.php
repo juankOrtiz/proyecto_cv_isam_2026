@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfertaController;
+use App\Http\Controllers\ProyectosController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inicio');
 
 // Nueva ruta que define que ocurre cuando el usuario visita la URL /hola
 Route::get('/hola', function() {
@@ -30,3 +31,7 @@ Route::post("/ofertas", [OfertaController::class, 'store'])
 // {id} es un parametro variable que define el ID de la oferta que queremos ver
 Route::get('/ofertas/{id}', [OfertaController::class, 'show'])
     ->name('ofertas.show');
+
+// Ruta para ver los proyectos
+Route::get('/proyectos', [ProyectosController::class, 'index'])
+    ->name('proyectos.index');
