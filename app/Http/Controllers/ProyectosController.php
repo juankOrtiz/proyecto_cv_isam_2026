@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProyectoRequest;
 
 class ProyectosController extends Controller
 {
@@ -27,18 +28,12 @@ class ProyectosController extends Controller
         return view('proyectos.create');
     }
 
-    public function store(Request $request) {
-        // dd() inspecciona el argumento y lo muestra en la vista
-        // dd($request);
-        $datos = $request->validate([
-            "titulo" => 'required|min:3|max:100',
-            "descripcion" => ['required', 'min:10'],
-            "etiquetas" => 'required'
-        ]);
+    public function store(StoreProyectoRequest $request) {
+        // 1. Validacion: se valida en la clase StoreProyectoRequest
 
-        // Aca deberiamos guardar en la BD
+        // 2. Guardar datos en la BD (A futuro)
 
-        // Redirigir a proyectos.index con un mensaje de exito
+        // 3. Redirigir a proyectos.index con un mensaje de exito
         return redirect()
             ->route('proyectos.index')
             ->with('exito', 'Se ha creado el proyecto');
