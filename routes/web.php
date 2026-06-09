@@ -35,3 +35,10 @@ Route::get('/ofertas/{id}', [OfertaController::class, 'show'])
 // Ruta para ver los proyectos
 Route::get('/proyectos', [ProyectosController::class, 'index'])
     ->name('proyectos.index');
+
+// Ruta para ver el formulario de creacion de proyectos
+Route::get('/proyectos/create', [ProyectosController::class, 'create'])
+    ->name('proyectos.create');
+
+Route::post('/proyectos', [ProyectosController::class, 'store'])
+    ->name('proyectos.store');

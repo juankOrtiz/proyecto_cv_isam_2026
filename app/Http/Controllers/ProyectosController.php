@@ -20,6 +20,27 @@ class ProyectosController extends Controller
                 'tags' => ['Python', 'PyGame']
             ]
         ];
-        return view('proyectos', compact('proyectos'));
+        return view('proyectos.index', compact('proyectos'));
+    }
+
+    public function create() {
+        return view('proyectos.create');
+    }
+
+    public function store(Request $request) {
+        // dd() inspecciona el argumento y lo muestra en la vista
+        // dd($request);
+        $datos = $request->validate([
+            "titulo" => 'required|min:3|max:100',
+            "descripcion" => ['required', 'min:10'],
+            "etiquetas" => 'required'
+        ]);
+
+        // Aca deberiamos guardar en la BD
+
+        // Redirigir a proyectos.index con un mensaje de exito
+        return redirect()
+            ->route('proyectos.index')
+            ->with('exito', 'Se ha creado el proyecto');
     }
 }
