@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\ProyectosController;
+use App\Http\Controllers\ArchivosController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,3 +43,13 @@ Route::get('/proyectos/create', [ProyectosController::class, 'create'])
 
 Route::post('/proyectos', [ProyectosController::class, 'store'])
     ->name('proyectos.store');
+
+// Grupo de rutas para trabajar con subida de archivos
+Route::get('/archivos', [ArchivosController::class, 'index'])
+    ->name('archivos.index');
+
+Route::get('/archivos/create', [ArchivosController::class, 'create'])
+    ->name('archivos.create');
+
+Route::post('/archivos', [ArchivosController::class, 'store'])
+    ->name('archivos.store');
