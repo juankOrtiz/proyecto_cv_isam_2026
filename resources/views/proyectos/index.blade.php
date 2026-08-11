@@ -24,8 +24,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($proyectos as $proyecto)
                 <x-project-card 
-                    :title="$proyecto['title']" 
-                    :description="$proyecto['desc']" 
+                    :title="$proyecto['titulo']" 
+                    :description="$proyecto['descripcion']" 
                     :techs="$proyecto['tags']" 
                 />
             @empty

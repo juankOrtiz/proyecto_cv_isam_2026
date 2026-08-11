@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProyectoRequest;
+use App\Models\Proyecto;
 
 class ProyectosController extends Controller
 {
     // Metodo que muestra todos los proyectos de mi aplicacion
     public function index() {
-        $proyectos = [
+        // Asi definiamos datos de prueba antes...
+        /*$proyectos = [
             [
                 'title' => 'Sistema de gestion comercial',
                 'desc' => 'Sistema para comercios con carrito de compras y productos',
@@ -20,7 +22,10 @@ class ProyectosController extends Controller
                 'desc' => 'Desarrollo de juego por turnos con logica simple',
                 'tags' => ['Python', 'PyGame']
             ]
-        ];
+        ];*/
+        // Ahora hacemos una consulta SQL para leer todos los proyectos de la tabla
+        // all() de fondo hace la siguiente consulta: SELECT * FROM proyectos;
+        $proyectos = Proyecto::all();
         return view('proyectos.index', compact('proyectos'));
     }
 
