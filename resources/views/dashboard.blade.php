@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <a href="#">Enlace de prueba</a>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button>
-                <span>cerrar sesión</span>
-            </button>
-        </form>
-    </nav>
+@extends('layouts.app')
 
-    <h1>DASHBOARD DE {{ Auth::user() ? Auth::user()->name : 'ANONIMO' }}</h1>
-</body>
-</html>
+@section('titulo', 'Dashboard')
+
+@section('contenido')
+    <h1 class="text-2xl font-bold text-gray-800 mb-4">
+        Dashboard de {{ Auth::user()->name }}
+    </h1>
+
+    <p class="text-gray-600">Bienvenido al panel principal del proyecto CV.</p>
+@endsection
