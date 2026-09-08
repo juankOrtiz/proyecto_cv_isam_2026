@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OfertaController;
-use App\Http\Controllers\ProyectosController;
 use App\Http\Controllers\ArchivosController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OfertaController;
+use App\Http\Controllers\ProyectosController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 // Comprobar si el usuario esta autenticado
 // SI: redirijo al dashboard
@@ -27,7 +27,7 @@ Route::post('/login', [AuthController::class, 'storeLogin'])
 
 // Todas las rutas que estan dentro de este grupo, son la zona "privada"
 // El usuario debe estar autenticado para visitarlas
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     // Ruta del dashboard para redirigir usuarios logueados
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
@@ -38,16 +38,16 @@ Route::middleware('auth')->group(function() {
 
     // Ruta para ver un listado de ofertas
     // GET -> enlaces
-    Route::get("/ofertas", [OfertaController::class, 'index'])
+    Route::get('/ofertas', [OfertaController::class, 'index'])
         ->name('ofertas.index');
 
     // Ruta para mostrar el formulario de creacion de oferta
-    Route::get("/ofertas/crear", [OfertaController::class, 'create'])
+    Route::get('/ofertas/crear', [OfertaController::class, 'create'])
         ->name('ofertas.create');
 
     // Ruta para recibir los datos del formulario de nueva oferta
     // POST -> recibir datos de formularios
-    Route::post("/ofertas", [OfertaController::class, 'store'])
+    Route::post('/ofertas', [OfertaController::class, 'store'])
         ->name('ofertas.store');
 
     // Ruta para mostrar los datos de UNA oferta
@@ -65,6 +65,9 @@ Route::middleware('auth')->group(function() {
 
     Route::post('/proyectos', [ProyectosController::class, 'store'])
         ->name('proyectos.store');
+
+    Route::get('/proyectos/{proyecto}', [ProyectosController::class, 'show'])
+        ->name('proyectos.show');
 
     // Grupo de rutas para trabajar con subida de archivos
     Route::get('/archivos', [ArchivosController::class, 'index'])

@@ -10,7 +10,9 @@
     </div>
 
     @if(session('exito'))
-        <p>{{ session('exito') }}</p>
+        <div class="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+            {{ session('exito') }}
+        </div>
     @endif
 
     <section>
@@ -23,10 +25,11 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($proyectos as $proyecto)
-                <x-project-card 
-                    :title="$proyecto['titulo']" 
-                    :description="$proyecto['descripcion']" 
-                    :techs="$proyecto['tags']" 
+                <x-project-card
+                    :title="$proyecto->titulo"
+                    :description="$proyecto->descripcion"
+                    :techs="$proyecto->tags"
+                    :url="route('proyectos.show', $proyecto)"
                 />
             @empty
                 <div class="col-span-full bg-slate-850 border border-dashed border-slate-700 rounded-xl p-8 text-center text-slate-500">

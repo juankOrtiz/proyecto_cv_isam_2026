@@ -18,9 +18,14 @@ class ProyectoFactory extends Factory
     public function definition(): array
     {
         return [
-            // Aca defino cual es la logica para poblar cada campo de mi tabla proyectos
             'titulo' => fake()->sentence(3),
             'descripcion' => fake()->sentence(5),
+            'etiquetas' => fake()->randomElement([
+                'PHP, Laravel, MySQL',
+                'Python, Django, PostgreSQL',
+                'JavaScript, React, Node.js',
+                'PHP, Vue, Tailwind',
+            ]),
         ];
     }
 }

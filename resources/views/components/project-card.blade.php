@@ -1,4 +1,4 @@
-@props(['title', 'description', 'techs' => []])
+@props(['title', 'description', 'techs' => [], 'url' => '#'])
 
 <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden hover:shadow-lg hover:border-indigo-500/50 transition-all duration-300 flex flex-col justify-between p-5">
     <div>
@@ -7,7 +7,7 @@
             {{ $description }}
         </p>
     </div>
-    
+
     <div>
         <div class="flex flex-wrap gap-1.5 mb-4">
             @foreach($techs as $tech)
@@ -18,7 +18,9 @@
         </div>
 
         <div class="flex text-xs">
-            <a href="#" class="bg-indigo-650 hover:bg-indigo-600 text-white font-medium px-3 py-1.5 rounded transition-colors w-full text-center">Ver Proyecto</a>
+            <a href="{{ $url }}" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-3 py-1.5 rounded transition-colors w-full text-center">
+                Ver Proyecto
+            </a>
         </div>
     </div>
 </div>
