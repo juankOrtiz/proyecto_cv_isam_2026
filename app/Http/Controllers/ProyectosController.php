@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProyectoRequest;
+use App\Jobs\ProyectoCreado;
 use App\Mail\ProyectoCreadoMail;
 use App\Models\Proyecto;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class ProyectosController extends Controller
@@ -42,9 +44,8 @@ class ProyectosController extends Controller
         // Validando y creando el proyecto
         $proyecto = Proyecto::create($request->validated());
 
-        // Enviar un mail al usuario
-        Mail::to(auth()->user()->email)
-            ->send(new ProyectoCreadoMail($proyecto));
+        // Enviar la tarea de envio de mail al Queue
+        ProyectoCreado::dispatch(auth()->user()->email, $proyecto);
 
         return redirect()
             ->route('proyectos.index')
