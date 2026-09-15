@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProyectoRequest;
+use App\Mail\ProyectoCreadoMail;
 use App\Models\Proyecto;
+use Illuminate\Support\Facades\Mail;
 
 class ProyectosController extends Controller
 {
@@ -37,7 +39,12 @@ class ProyectosController extends Controller
 
     public function store(StoreProyectoRequest $request)
     {
-        Proyecto::create($request->validated());
+        // Validando y creando el proyecto
+        $proyecto = Proyecto::create($request->validated());
+
+        // Enviar un mail al usuario
+        Mail::to(auth()->user()->email)
+            ->send(new ProyectoCreadoMail($proyecto));
 
         return redirect()
             ->route('proyectos.index')

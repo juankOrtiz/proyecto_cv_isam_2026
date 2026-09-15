@@ -15,16 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(1000)->create();
 
         // Este bloque invoca y ejecuta los seeders indicados dentro del arreglo
         $this->call([
             ProyectoSeeder::class,
         ]);
 
-        /*User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);*/
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
+            'password' => bcrypt('password'),
+        ]);
     }
 }
